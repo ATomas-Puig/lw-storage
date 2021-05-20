@@ -33,7 +33,7 @@ express()
     const data = await db.any("SELECT type, data FROM files WHERE name = ${name}", { name: req.params.upload });
     const file = Buffer.from(data[0].data, 'binary');
 
-    res.writeHead(200, {'Content-Type': data.type, 'Content-Length': file.length });
+    res.writeHead(200, {'Content-Type': `'${data.type}'`, 'Content-Length': file.length });
     res.end(file);
   })
 
